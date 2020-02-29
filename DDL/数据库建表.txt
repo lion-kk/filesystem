@@ -1,0 +1,24 @@
+create table USER(
+ id int primary key auto_increment not null,
+ account varchar(20) unique,
+ password varchar(20),
+ adminflag smallint
+)
+其中adminflag的1表示是超级管理员，0表示不是。
+INSERT INTO USER(account,password,adminflag) VALUES('admin','qq246689',1);
+INSERT INTO USER (account,password,adminflag) VALUES('superman','123qq',0);
+
+========================================================
+CREATE TABLE file(
+id INT PRIMARY KEY NOT NULL auto_increment,
+creator_id INT NOT NULL,
+name VARCHAR(50) NOT NULL,
+size LONG NOT null,
+suffix VARCHAR(20) NOT null,
+type SMALLINT NOT NULL,
+uploaddate date NOT NULL,
+path VARCHAR(100) NOT NULL,
+partent_id INT 
+)
+
+其中type 的1表示是文件，0表示文件夹。
