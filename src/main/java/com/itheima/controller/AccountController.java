@@ -1,6 +1,6 @@
 package com.itheima.controller;
 
-import com.itheima.model.AccountPo;
+import com.itheima.model.UserPo;
 import com.itheima.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,10 +18,11 @@ public class AccountController {
 
     @PostMapping(value = "/login")
     @ResponseBody
-    public ModelAndView select(AccountPo accountPo) {
+    public ModelAndView login( UserPo userPo) {
         ModelAndView modelAndView = new ModelAndView();
-        if (accountService.select(accountPo)) {
-            modelAndView.addObject("msg","hello");
+        String login = accountService.login(userPo);
+        if (login!=null) {
+            modelAndView.addObject("token",login);
             modelAndView.setViewName("success.html");
         } else {
             modelAndView.setViewName("error.html");
@@ -41,7 +42,7 @@ public class AccountController {
     }
 
     @RequestMapping("/index")
-    public ModelAndView login() {
+    public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login.html");
         return modelAndView;

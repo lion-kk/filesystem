@@ -1,9 +1,9 @@
 package com.itheima.service;
 
-import com.itheima.model.AccountPo;
+import com.itheima.model.UserPo;
 
 
 public interface AccountService {
 
-    boolean select(AccountPo accountPo);
+    String login(UserPo userPo);
 }

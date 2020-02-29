@@ -1,18 +1,25 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<script type="text/javascript" src="layui/layui.js"></script>
-<script type="text/javascript">
-    $(function () {
+    <meta charset="utf-8">
+    <title>upload</title>
+    <link rel="stylesheet" href="../css/layui.css" media="all">
+    <script type="text/javascript" src="./jquery-3.4.1.min.js"></script>
 
-    })
-</script>
+    <script src="../layui.js"></script>
+</head>
 
 <body>
-<form action="/account/upload"><input type="file" name="file"></form>
-<li th:text="${msg}"></li>
+
+<button type="button" class="layui-btn" id="uploadExample">
+    <i class="layui-icon">&#xe67c;</i>上传安装包或更新包
+    <input style="display: none" id="aa" th:value="${token}"></div>
+</button>
+
+<script>
+    $(function () {
+        console.log($("#aa").val());
+    })
+</script>
 </body>
 </html>
