@@ -1,14 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>文件安全系统登录</title>
-    <link rel="stylesheet" href="./css/layui.css" media="all">
+    <link th:href="@{/static/css/layui.css}" rel="stylesheet" />
     <style>
         body{margin: 10px;}
         .demo-carousel{height: 200px; line-height: 200px; text-align: center;}
     </style>
+    <script src="./static/layui.js"></script>
+    <script>
+        layui.use(['layer', 'form'], function(){
+            var layer = layui.layer
+                ,form = layui.form;
+
+            layer.msg('Hello LayUI');
+        });
+    </script>
 </head>
 <body>
 <form class="layui-form" action="">
