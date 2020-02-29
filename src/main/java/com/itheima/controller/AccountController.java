@@ -3,10 +3,7 @@ package com.itheima.controller;
 import com.itheima.model.AccountPo;
 import com.itheima.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,11 +16,12 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-    @RequestMapping(value = "/select")
+    @PostMapping(value = "/login")
     @ResponseBody
     public ModelAndView select(AccountPo accountPo) {
         ModelAndView modelAndView = new ModelAndView();
         if (accountService.select(accountPo)) {
+            modelAndView.addObject("msg","hello");
             modelAndView.setViewName("success.html");
         } else {
             modelAndView.setViewName("error.html");
@@ -42,7 +40,7 @@ public class AccountController {
         bufferedOutputStream.close();
     }
 
-    @RequestMapping("/login")
+    @RequestMapping("/index")
     public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login.html");

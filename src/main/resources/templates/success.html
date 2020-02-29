@@ -1,11 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
-     <form action="/account/upload"><input type="file" name="file"></form>
+<script type="text/javascript" src="layui/layui.js"></script>
+<script type="text/javascript">
+    $(function () {
 
+    })
+</script>
+
+<body>
+<form action="/account/upload"><input type="file" name="file"></form>
+<li th:text="${msg}"></li>
 </body>
 </html>
