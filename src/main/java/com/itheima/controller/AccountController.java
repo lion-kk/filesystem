@@ -23,6 +23,7 @@ public class AccountController {
         String login = accountService.login(userPo);
         if (login!=null) {
             modelAndView.addObject("token",login);
+            modelAndView.addObject("account",userPo.getAccount());
             modelAndView.setViewName("success.html");
         } else {
             modelAndView.setViewName("error.html");
