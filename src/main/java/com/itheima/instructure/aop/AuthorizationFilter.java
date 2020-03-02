@@ -1,0 +1,38 @@
+package com.itheima.instructure.aop;
+
+import com.itheima.dao.AccountMapper;
+import com.itheima.instructure.aop.exception.FileSystemException;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+@Aspect
+public class AuthorizationFilter {
+    @Pointcut("execution(public * com.itheima.controller..*(..))")
+    public void pointExpression() {
+    }
+
+    @Autowired
+    public HttpServletRequest httpServletRequest;
+    @Resource
+    public AccountMapper accountMapper;
+
+    @Before(value = "pointExpression()")
+    public void before(JoinPoint joinPoint) {
+        String token = httpServletRequest.getHeader("token");
+        if (StringUtils.isEmpty(token)) {
+            throw new FileSystemException("鉴权失败！");
+        }
+        if (accountMapper.tokenquery(token)) {
+            return;
+        } else {
+            throw new FileSystemException("鉴权失败！");
+        }
+
+    }
+}

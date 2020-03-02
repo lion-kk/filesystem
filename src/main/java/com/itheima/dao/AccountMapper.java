@@ -8,4 +8,5 @@ import org.apache.ibatis.annotations.Param;
 public interface AccountMapper {
     UserPo query(@Param("account") String account, @Param("password") String password);
     int update(String token,long userId);
+    boolean tokenquery(String token);
 }

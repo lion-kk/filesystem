@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <title>Layui</title>
@@ -21,29 +21,27 @@
     $(function () {
         layui.use('table', function () {
             var table = layui.table;
-
+            console.log($("#tokenArg").val());
             table.render({
                 elem: '#test'
-                , url: '/demo/table/user/'
-                , page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
-                    layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
-                    //,curr: 5 //设定初始在第 5 页
-                    , groups: 1 //只显示 1 个连续页码
-                    , first: false //不显示首页
-                    , last: false //不显示尾页
-
-                }
+                , url: '/file/getfiledata'
+                ,headers:{'Content-Type':'application/json;charset=utf8','token':$("#tokenArg").val()}
+                // , page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+                //     layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
+                //     //,curr: 5 //设定初始在第 5 页
+                //     , groups: 1 //只显示 1 个连续页码
+                //     , first: false //不显示首页
+                //     , last: false //不显示尾页
+                //
+                // }
                 , cols: [
                     [
-                        {field: 'id', width: 80, title: 'ID'}
-                        , {field: 'username', width: 100, title: '用户名'}
-                        , {field: 'sex', width: 80, title: '性别'}
-                        , {field: 'city', width: 80, title: '城市'}
-                        , {field: 'sign', width: 80,title: '签名'}
-                        , {field: 'experience', width: 80, title: '积分'}
-                        , {field: 'score', width: 80, title: '评分'}
-                        , {field: 'classify', width: 80, title: '职业'}
-                        , {field: 'wealth', width: 135, title: '财富'}
+                        {field: 'account', width: 80, title: '上传人'}
+                        , {field: 'name', width: 200, title: '文件名'}
+                        , {field: 'size', width: 80, title: '大小'}
+                        , {field: 'suffix', width: 80, title: '后缀名'}
+                        , {field: 'type', width: 80, title: '类型'}
+                        , {field: 'uploaddate', width: 200, title: '上传日期'}
                     ]
                 ]
 
@@ -52,6 +50,8 @@
     })
 
 </script>
-
+<div class="args" style="display: none">
+    <input id="tokenArg" th:value="${token}"/>
+</div>
 </body>
 </html>

@@ -4,6 +4,9 @@
     <update id="update">
         update user set token=#{token} where id=#{userId};
     </update>
+    <select id="tokenquery" resultType="java.lang.Boolean">
+        select count(1) from user where token=#{token};
+    </select>
     <select id="query" resultType="com.itheima.model.UserPo">
         select * from user
         where account=#{account} and password = #{password};

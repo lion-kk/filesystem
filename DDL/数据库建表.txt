@@ -16,7 +16,7 @@ name VARCHAR(50) NOT NULL,
 size LONG NOT null,
 suffix VARCHAR(20) NOT null,
 type SMALLINT NOT NULL,
-uploaddate date NOT NULL,
+uploaddate uploaddate NOT NULL,
 path VARCHAR(100) NOT NULL,
 partent_id INT 
 )
