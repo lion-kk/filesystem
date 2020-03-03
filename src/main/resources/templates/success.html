@@ -12,6 +12,9 @@
 <body>
 
 <table class="layui-hide" id="test"></table>
+<button type="button" class="layui-btn" id="test1">
+    <i class="layui-icon">&#xe67c;</i>上传文件
+</button>
 
 <script type="text/javascript" src="../jquery-3.4.1.min.js"></script>
 <script src="../layui.js" charset="utf-8"></script>
@@ -24,7 +27,7 @@
             console.log($("#tokenArg").val());
             table.render({
                 elem: '#test'
-                , url: '/file/getfiledata'
+                , url: '/file/getdata'
                 ,headers:{'Content-Type':'application/json;charset=utf8','token':$("#tokenArg").val()}
                 // , page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
                 //     layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
@@ -40,7 +43,7 @@
                         , {field: 'name', width: 200, title: '文件名'}
                         , {field: 'size', width: 80, title: '大小'}
                         , {field: 'suffix', width: 80, title: '后缀名'}
-                        , {field: 'type', width: 80, title: '类型'}
+                        //, {field: 'type', width: 80, title: '类型'}
                         , {field: 'uploaddate', width: 200, title: '上传日期'}
                     ]
                 ]
@@ -49,6 +52,26 @@
         });
     })
 
+</script>
+<script>
+    layui.use('upload', function(){
+        var upload = layui.upload;
+
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#test1' //绑定元素
+            ,url: '/file/upload' //上传接口
+            ,done: function(res){
+                //上传完毕回调
+            }
+            ,error: function(e){
+                console.log(e);
+                //请求异常回调
+            }
+            ,accept: 'file' //允许上传的文件类型
+            ,size: 102400 //最大允许上传的文件大小
+        });
+    });
 </script>
 <div class="args" style="display: none">
     <input id="tokenArg" th:value="${token}"/>

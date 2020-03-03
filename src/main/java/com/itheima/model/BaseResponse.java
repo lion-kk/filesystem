@@ -1,6 +1,5 @@
 package com.itheima.model;
 
-import java.io.Serializable;
 
 public class BaseResponse<T> {
     private String code;

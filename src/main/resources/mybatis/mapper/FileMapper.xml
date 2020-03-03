@@ -8,4 +8,10 @@
         on f.creator_id=u.id
         where u.token=#{token};
     </select>
+    <select id="queryuser" resultType="com.itheima.model.UserPo">
+        select * from user where token=#{token};
+    </select>
+    <select id="queryall" resultType="com.itheima.model.FileUserPo">
+        select f.*,u.account from file f left join user u on f.creator_id=u.id;
+    </select>
 </mapper>

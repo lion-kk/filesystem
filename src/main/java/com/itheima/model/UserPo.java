@@ -5,6 +5,15 @@ public class UserPo {
     private String password;
     private long id;
     private String token;
+    private int adminflag;
+
+    public int getAdminflag() {
+        return adminflag;
+    }
+
+    public void setAdminflag(int adminflag) {
+        this.adminflag = adminflag;
+    }
 
     public long getId() {
         return id;
