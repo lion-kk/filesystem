@@ -2,6 +2,7 @@ package com.itheima.controller;
 
 import com.itheima.model.BaseResponse;
 import com.itheima.model.FileUserPo;
+import com.itheima.model.UserPo;
 import com.itheima.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ResourceUtils;
@@ -25,12 +26,12 @@ public class FileController {
     }
 
     @RequestMapping("/upload")
-    public void uploadfile(@RequestParam("file") MultipartFile File) throws IOException {
+    public BaseResponse<Boolean> uploadfile(@RequestParam("file") MultipartFile File) throws IOException {
         if (File != null) {
             String filename = File.getOriginalFilename();
-
-            fileService.SaveFileFromInputStream(File, filename);//保存到服务器的路径
+            return BaseResponse.success(fileService.SaveFileFromInputStream(File, filename));//保存到服务器的路径
         }
+        return  BaseResponse.success(false);
     }
 }
 

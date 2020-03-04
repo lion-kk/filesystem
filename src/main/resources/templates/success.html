@@ -61,7 +61,9 @@
         var uploadInst = upload.render({
             elem: '#test1' //绑定元素
             ,url: '/file/upload' //上传接口
+            ,headers:{'token':$("#tokenArg").val()}
             ,done: function(res){
+
                 //上传完毕回调
             }
             ,error: function(e){

@@ -6,7 +6,7 @@ public class FileUserPo {
     private int id;
     private int creator_id;
     private String name;
-    private String size;
+    private Long size;
     private String suffix;
     private int type;
     private Date uploaddate;
@@ -46,11 +46,11 @@ public class FileUserPo {
         this.name = name;
     }
 
-    public String getSize() {
+    public Long getSize() {
         return size;
     }
 
-    public void setSize(String size) {
+    public void setSize(Long size) {
         this.size = size;
     }
 

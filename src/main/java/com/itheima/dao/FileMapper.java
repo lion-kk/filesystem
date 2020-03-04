@@ -11,4 +11,6 @@ public interface FileMapper {
     List<FileUserPo> query(String token);
     UserPo queryuser(String token);
     List<FileUserPo> queryall();
+    void insert(FileUserPo fileUserPo);
+    int queryUserId(String token);
 }

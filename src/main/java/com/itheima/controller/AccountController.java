@@ -34,6 +34,7 @@ public class AccountController {
     }
 
     @RequestMapping("/index")
+    @Anonymous
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login.html");

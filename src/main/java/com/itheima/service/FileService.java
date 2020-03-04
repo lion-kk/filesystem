@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface FileService {
     List<FileUserPo> getfiledata(String token);
-    void SaveFileFromInputStream(MultipartFile file, String savefile) throws IOException;
+    boolean SaveFileFromInputStream(MultipartFile file, String savefile) throws IOException;
 }
