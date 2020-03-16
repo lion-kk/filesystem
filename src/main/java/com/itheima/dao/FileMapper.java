@@ -9,8 +9,10 @@ import java.util.List;
 @Mapper
 public interface FileMapper {
     List<FileUserPo> query(String token);
-    UserPo queryuser(String token);
-    List<FileUserPo> queryall();
+    UserPo queryUser(String token);
+    List<FileUserPo> queryAll();
     void insert(FileUserPo fileUserPo);
     int queryUserId(String token);
+    void delete(int id);
+    String downLoad(int id);
 }

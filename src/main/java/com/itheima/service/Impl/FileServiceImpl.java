@@ -10,14 +10,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.text.SimpleDateFormat;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.util.Date;
 import java.util.List;
-import java.util.SimpleTimeZone;
+
 
 @Service
 public class FileServiceImpl implements FileService {
@@ -29,9 +26,9 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public List<FileUserPo> getfiledata(String token) {
-        UserPo queryuser = fileMapper.queryuser(token);
+        UserPo queryuser = fileMapper.queryUser(token);
         if (queryuser.getAdminflag() == 1) {
-            return fileMapper.queryall();
+            return fileMapper.queryAll();
         } else if (queryuser.getAdminflag() == 0) {
             List<FileUserPo> query = fileMapper.query(token);
             return query;
@@ -76,6 +73,59 @@ public class FileServiceImpl implements FileService {
         } finally {
             fs.close();
             is.close();
+        }
+    }
+
+    @Override
+    public void delete(int id) {
+        fileMapper.delete(id);
+    }
+
+    @Override
+    public void downLoad(int id, HttpServletResponse httpServletResponse) {
+        String fileName = fileMapper.downLoad(id);
+        String splicingFileName = "/"+fileName;
+        String path = System.getProperty("user.dir") + "/files";
+        File file = new File(path+splicingFileName);
+        if (file.exists()) {
+            httpServletResponse.setContentType("application/force-download");
+            try {
+                httpServletResponse.setHeader( "Content-Disposition", "attachment;filename=" + java.net.URLEncoder.encode(fileName, "UTF-8") );
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            byte[] buffer = new byte[1024 * 1024];
+            FileInputStream fis = null;
+            BufferedInputStream bis = null;
+            try {
+                fis = new FileInputStream(file);
+                bis = new BufferedInputStream(fis);
+                OutputStream outputStream = httpServletResponse.getOutputStream();
+                int i = bis.read(buffer);
+                while (i != -1) {
+                    outputStream.write(buffer, 0, i);
+                    i = bis.read(buffer);
+                }
+                outputStream.flush();
+                return ;
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (bis != null) {
+                    try {
+                        bis.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (fis != null) {
+                    try {
+                        fis.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
         }
     }
 

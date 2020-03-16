@@ -5,6 +5,9 @@
         insert into file ( creator_id,name, size, suffix,type,uploaddate,path,parent_id)
         VALUES (#{creator_id},#{name},#{size},#{suffix},#{type},#{uploaddate},#{path},#{parent_id});
     </insert>
+    <delete id="delete">
+        delete from file where id=#{id};
+    </delete>
 
     <select id="query" resultType="com.itheima.model.FileUserPo">
         select f.*,u.account from file f
@@ -12,13 +15,16 @@
         on f.creator_id=u.id
         where u.token=#{token};
     </select>
-    <select id="queryuser" resultType="com.itheima.model.UserPo">
+    <select id="queryUser" resultType="com.itheima.model.UserPo">
         select * from user where token=#{token};
     </select>
-    <select id="queryall" resultType="com.itheima.model.FileUserPo">
+    <select id="queryAll" resultType="com.itheima.model.FileUserPo">
         select f.*,u.account from file f left join user u on f.creator_id=u.id;
     </select>
     <select id="queryUserId" resultType="java.lang.Integer">
         select id from user where token=#{token};
+    </select>
+    <select id="downLoad" resultType="java.lang.String">
+        SELECT name from file where id=#{id};
     </select>
 </mapper>

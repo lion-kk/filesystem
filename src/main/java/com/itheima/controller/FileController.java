@@ -1,14 +1,13 @@
 package com.itheima.controller;
 
+import com.itheima.instructure.aop.Anonymous;
 import com.itheima.model.BaseResponse;
 import com.itheima.model.FileUserPo;
-import com.itheima.model.UserPo;
 import com.itheima.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
@@ -31,7 +30,19 @@ public class FileController {
             String filename = File.getOriginalFilename();
             return BaseResponse.success(fileService.SaveFileFromInputStream(File, filename));//保存到服务器的路径
         }
-        return  BaseResponse.success(false);
+        return BaseResponse.success(false);
+    }
+
+    @DeleteMapping
+    public void delete(@RequestParam("id") int id) {
+        fileService.delete(id);
+    }
+
+    @RequestMapping("/download")
+    @ResponseBody
+    @Anonymous
+    public void downLoad(@RequestParam("id") int id ,HttpServletResponse httpServletResponse) {
+        fileService.downLoad(id,httpServletResponse);
     }
 }
 
