@@ -1,6 +1,6 @@
-package com.itheima.service;
+package com.system.service;
 
-import com.itheima.model.UserPo;
+import com.system.model.UserPo;
 
 
 public interface AccountService {

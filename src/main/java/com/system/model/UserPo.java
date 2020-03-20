@@ -1,4 +1,4 @@
-package com.itheima.model;
+package com.system.model;
 
 public class UserPo {
     private String account;

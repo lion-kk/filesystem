@@ -1,6 +1,6 @@
-package com.itheima.dao;
+package com.system.dao;
 
-import com.itheima.model.UserPo;
+import com.system.model.UserPo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

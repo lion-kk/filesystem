@@ -1,7 +1,7 @@
-package com.itheima.instructure.aop;
+package com.system.instructure.aop;
 
-import com.itheima.dao.AccountMapper;
-import com.itheima.instructure.aop.exception.FileSystemException;
+import com.system.dao.AccountMapper;
+import com.system.instructure.aop.exception.FileSystemException;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -19,7 +19,7 @@ import java.lang.reflect.Method;
 @Aspect
 @Component
 public class AuthorizationFilter {
-    @Pointcut("execution(public * com.itheima.controller..*(..))")
+    @Pointcut("execution(public * com.system.controller..*(..))")
     public void pointExpression() {
     }
 

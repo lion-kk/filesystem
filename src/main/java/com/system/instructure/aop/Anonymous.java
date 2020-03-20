@@ -1,4 +1,4 @@
-package com.itheima.instructure.aop;
+package com.system.instructure.aop;
 
 import org.springframework.stereotype.Component;
 

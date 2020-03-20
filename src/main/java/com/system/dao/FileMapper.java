@@ -1,7 +1,7 @@
-package com.itheima.dao;
+package com.system.dao;
 
-import com.itheima.model.FileUserPo;
-import com.itheima.model.UserPo;
+import com.system.model.FileUserPo;
+import com.system.model.UserPo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

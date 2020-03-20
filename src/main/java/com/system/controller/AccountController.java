@@ -1,8 +1,8 @@
-package com.itheima.controller;
+package com.system.controller;
 
-import com.itheima.instructure.aop.Anonymous;
-import com.itheima.model.UserPo;
-import com.itheima.service.AccountService;
+import com.system.instructure.aop.Anonymous;
+import com.system.model.UserPo;
+import com.system.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;

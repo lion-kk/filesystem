@@ -1,6 +1,9 @@
-package com.itheima.model;
+package com.system.model;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
+
 
 public class FileUserPo {
     private int id;
@@ -9,6 +12,7 @@ public class FileUserPo {
     private Long size;
     private String suffix;
     private int type;
+    @JsonFormat(pattern = "yyyy.MM.dd-HH:mm:ss",timezone = "GMT+8")
     private Date uploaddate;
     private String path;
     private int parent_id;

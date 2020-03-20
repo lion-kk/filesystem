@@ -1,9 +1,9 @@
-package com.itheima.service.Impl;
+package com.system.service.Impl;
 
-import com.itheima.dao.FileMapper;
-import com.itheima.model.FileUserPo;
-import com.itheima.model.UserPo;
-import com.itheima.service.FileService;
+import com.system.dao.FileMapper;
+import com.system.model.FileUserPo;
+import com.system.model.UserPo;
+import com.system.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -64,8 +64,6 @@ public class FileServiceImpl implements FileService {
             fileUserPo.setType(1);
             String token = httpServletRequest.getHeader("token");
             fileUserPo.setCreator_id(fileMapper.queryUserId(token));
-
-
             fileMapper.insert(fileUserPo);
             return true;
         } catch (IOException e) {
